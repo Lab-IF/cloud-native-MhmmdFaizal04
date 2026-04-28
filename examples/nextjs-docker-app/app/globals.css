@@ -1,3 +1,36 @@
+/* ============================================================
+   📘 GLOBALS.CSS — CSS Global untuk Seluruh Aplikasi
+   ============================================================
+   File ini di-import di layout.js, jadi semua class yang
+   didefinisikan di sini bisa dipakai di halaman manapun.
+
+   🔑 Konsep CSS yang dipakai di file ini:
+   1. CSS Variables  — definisi warna/tema di :root
+   2. Class Selector  — .hero, .panel, .metricCard, dll
+   3. Flexbox         — .heroActions { display: flex }
+   4. CSS Grid        — .heroGrid, .metrics, .contentGrid
+   5. Responsive      — @media (max-width: 900px)
+   6. Pseudo-element  — .checkList li::before
+
+   💡 Cara menambah style baru:
+   1. Tambahkan className di JSX:  <div className="namaBaru">
+   2. Buat selector di file ini:   .namaBaru { ... }
+   3. Simpan → browser auto-update (saat npm run dev)
+
+   💡 Perbandingan pendekatan CSS:
+   | Pendekatan   | Cocok untuk                        |
+   |--------------|-------------------------------------|
+   | Global CSS   | Reset, theme, layout (file ini)     |
+   | CSS Modules  | Style per-component (*.module.css)  |
+   | Tailwind CSS | Utility-first (className="flex p-4")|
+   ============================================================ */
+
+/* ── CSS VARIABLES ──────────────────────────────────────────
+   Didefinisikan di :root → bisa dipakai di mana saja.
+   Cara pakai: var(--nama-variable)
+   Contoh: color: var(--brand) → menghasilkan warna #38bdf8
+   Keuntungan: ubah warna di satu tempat, berubah di mana-mana.
+   ──────────────────────────────────────────────────────────── */
 :root {
   color-scheme: dark;
   --bg: #08111f;
@@ -94,6 +127,11 @@ h3 {
   line-height: 1.75;
 }
 
+/* ── FLEXBOX ─────────────────────────────────────────────────
+   display: flex → item disusun dalam satu baris (atau kolom)
+   flex-wrap: wrap → item pindah ke baris baru jika tidak muat
+   gap: 12px → jarak antar item
+   ──────────────────────────────────────────────────────────── */
 .heroActions {
   display: flex;
   flex-wrap: wrap;
@@ -159,6 +197,17 @@ pre {
   white-space: pre-wrap;
 }
 
+/* ── CSS GRID ────────────────────────────────────────────────
+   display: grid → item disusun dalam baris DAN kolom
+   grid-template-columns → menentukan jumlah dan lebar kolom
+   repeat(3, minmax(0,1fr)) → 3 kolom sama lebar
+   repeat(2, 1fr) → 2 kolom sama lebar
+   gap → jarak antar cell grid
+
+   Perbedaan Flexbox vs Grid:
+   - Flexbox: layout 1 dimensi (baris ATAU kolom)
+   - Grid: layout 2 dimensi (baris DAN kolom sekaligus)
+   ──────────────────────────────────────────────────────────── */
 .metrics,
 .contentGrid,
 .steps {
@@ -250,6 +299,11 @@ pre {
   line-height: 1.6;
 }
 
+/* ── PSEUDO-ELEMENT ──────────────────────────────────────────
+   ::before → menambah konten sebelum isi element
+   content: "+" → teks yang ditampilkan (tanda plus hijau)
+   position: absolute → posisi relatif terhadap parent (li)
+   ──────────────────────────────────────────────────────────── */
 .checkList li::before {
   content: "+";
   position: absolute;
@@ -293,6 +347,17 @@ pre {
   font-size: 0.78rem;
 }
 
+/* ── RESPONSIVE DESIGN ──────────────────────────────────────
+   @media (max-width: 900px) → aturan di bawah ini HANYA aktif
+   jika lebar layar 900px atau kurang (tablet/mobile).
+
+   Di sini semua grid diubah menjadi 1 kolom agar konten
+   tidak terlalu sempit di layar kecil.
+
+   Cara kerja:
+   1. Desktop (>900px): grid multi-kolom (2-4 kolom)
+   2. Mobile (≤900px): grid 1 kolom (semua ditumpuk vertikal)
+   ──────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .heroGrid,
   .contentGrid,

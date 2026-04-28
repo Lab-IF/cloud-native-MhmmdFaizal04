@@ -1,3 +1,20 @@
+// ============================================================
+// 📘 TEACHINGDATA.JS — Data Terpisah dari UI
+// ============================================================
+// File ini menyimpan data yang ditampilkan di halaman.
+// Data DIPISAH dari component agar:
+//   1. page.js lebih pendek dan mudah dibaca
+//   2. Data bisa dipakai di halaman lain (import ulang)
+//   3. Data bisa di-test secara terpisah
+//   4. Nanti bisa diganti dengan data dari API/database
+//
+// 🔑 Konsep:
+//   - export const = mengekspor variabel agar bisa di-import
+//   - Array of objects — pola data yang sangat umum di React
+//   - Setiap object = satu item yang akan di-render dengan .map()
+// ============================================================
+
+// Metrik ringkasan yang tampil di bagian atas halaman
 export const teachingMetrics = [
   {
     value: "UI",
@@ -13,6 +30,7 @@ export const teachingMetrics = [
   }
 ];
 
+// Kartu fitur yang menjelaskan apa saja yang ada di aplikasi ini
 export const featureCards = [
   {
     icon: "UI",
@@ -36,6 +54,7 @@ export const featureCards = [
   }
 ];
 
+// Checklist yang bisa diverifikasi mahasiswa setelah docker compose up
 export const runtimeChecks = [
   "Browser membuka halaman Next.js dari container pada port 3000.",
   "Endpoint /api/health mengembalikan status ok dan environment runtime.",
@@ -43,6 +62,7 @@ export const runtimeChecks = [
   "Health check Compose memastikan container bukan hanya hidup, tetapi responsif."
 ];
 
+// Langkah-langkah deployment: install → build → docker build → compose up
 export const deploymentSteps = [
   {
     number: "1",
